@@ -28,5 +28,6 @@ int main()
     a = s.twoSum(nums,target);
     for (auto i : a)
         cout << i << " ";
+    system("pause");
 
 }
