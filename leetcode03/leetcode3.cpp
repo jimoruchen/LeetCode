@@ -1,33 +1,34 @@
 #include<iostream>
 #include<string>
 #include<unordered_map>
-
 using namespace std;
-
-class Solution {
+class Solution{
 public:
-    int lengthOfLongestSubstring(string s) {
-        unordered_map<char,int> map;
-        int count=0,right=0;
-        for(int left=0;left<s.size();left++)
-        {   
-            if (left == 0)  map[s[left]]++;  //使用滑动窗口
-            else  map.erase(s[left - 1]);
-            while (right < s.size()-1 && map.find(s[right+1]) == map.end()) { //find函数判断是否在hash中，不在返回end()。
-                map[s[right + 1]]++;
+    int lengthOfLongestSubstring(string s)
+    {
+        unordered_map<char,int> mp;
+        int right = 0, count = 0;
+        for(int left = 0; left < s.size(); left++)   //从最左开始寻找最长的子串，有重复则在哈希表中删除最左的字符
+        {
+            if(left == 0)  mp[s[left]]++;
+            else mp.erase(s[left - 1]);
+            while(right < s.size() && mp.find(s[right + 1]) == mp.end())  //判断s[right+1]是否在哈希表中
+            {
+                mp[s[right + 1]]++;
                 right++;
             }
-            count=max(count,right-left+1);
+            count = max(count, right - left + 1);
         }
-    return count;
+        return count;
     }
+    
 };
 int main()
 {
-    string m;
-    cin >> m;
-    Solution solution;
-    cout << solution.lengthOfLongestSubstring(m) << endl;
+    Solution s;
+    string str;
+    cin >> str;
+    cout << s.lengthOfLongestSubstring(str);
     system("pause");
     return 0;
 }
