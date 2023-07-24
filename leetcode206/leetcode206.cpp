@@ -15,7 +15,7 @@ public:
     {
         if(!head || !head ->next)
             return head;
-        ListNode *prev = nullptr;
+        /*ListNode *prev = nullptr;
         ListNode *cur = head;
         while(cur)
         {
@@ -23,6 +23,20 @@ public:
             cur ->next = prev;
             prev = cur;
             cur = p;
+        }
+        */
+        ListNode *prev = NULL, *p;
+        while(head)
+        {
+            /*p = head;             //用p节点保存head
+            head = head->next;      //必须先让head后退一位，如果最后再后退，head有两个指向
+            p->next = prev;         //p节点指向prev
+            prev = p; */            //prev节点向后退一位
+
+            p = head ->next;        //用p保存head的下一位
+            head ->next = prev;     //head指向prev空节点
+            prev = head;            //prev节点向后退一位
+            head = p;               //head向后退一位
         }
         return prev;
     }

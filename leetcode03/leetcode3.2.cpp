@@ -12,7 +12,7 @@ public:
         {
             if(left == 0)  mp[s[left]]++;
             else mp.erase(s[left - 1]);
-            while(right < s.size() && mp.find(s[right + 1]) == mp.end())  //判断s[right+1]是否在哈希表中
+            while(right < s.size() - 1 && mp.find(s[right + 1]) == mp.end())  //判断s[right+1]是否在哈希表中
             {
                 mp[s[right + 1]]++;
                 right++;
