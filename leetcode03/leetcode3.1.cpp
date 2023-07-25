@@ -4,7 +4,7 @@
 using namespace std;
 class Solution {
 public:
-    int lengthOfLongestSubstring(string s) {
+    int lengthOfLongestSubstring(string s) {                //最长子串
         unordered_map<char, int> mp;
         int r = 0, count = 0;
         for(int l= 0; l < s.size(); l++)
