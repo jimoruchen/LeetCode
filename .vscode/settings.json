@@ -50,6 +50,9 @@
         "xutility": "cpp",
         "map": "cpp",
         "sstream": "cpp",
-        "xtree": "cpp"
+        "xtree": "cpp",
+        "unordered_set": "cpp",
+        "deque": "cpp",
+        "stack": "cpp"
     }
 }

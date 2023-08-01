@@ -14,22 +14,20 @@ struct ListNode
 
 class Solution {
 public:
-    vector<int> reversePrint(ListNode* head) {
-        vector<int> vec;
-        stack<int> stk;
-        while(head)   
-        {   
-            stk.push(head ->val);
+    ListNode *detectCycle(ListNode *head) {
+        if(!head || !head ->next)   return NULL;
+        unordered_set<ListNode *> mp;
+        while(head)
+        {
+            if(mp.count(head))
+                return head;
+            mp.insert(head);
             head = head ->next;
         }
-        while(!stk.empty())
-        {
-            vec.push_back(stk.top());
-            stk.pop();
-        }
-        return vec;
+        return NULL;
+        
     }
-}; 
+};
 ListNode * CreateListNode(vector<int> a, int n)
 {
     /*ListNode *p = head;
@@ -75,9 +73,11 @@ int main()
     int n1 = nums1.size();
     ListNode *head = CreateListNode(nums1, n1);
     PrintLinkList(head);
-    vector<int> vec1 = s.reversePrint(head);
-    for(int i = 0; i < vec1.size(); i++)
-        cout << vec1[i] << " ";
+    ListNode * p = s.detectCycle(head);
+    if (p)
+        cout << "链表中存在环，环的入口节点值为：" << p->val << endl;
+    else
+        cout << "链表中不存在环。" << endl;
     system("pause");
     return 0;  
 }

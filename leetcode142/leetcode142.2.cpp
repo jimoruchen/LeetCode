@@ -14,22 +14,30 @@ struct ListNode
 
 class Solution {
 public:
-    vector<int> reversePrint(ListNode* head) {
-        vector<int> vec;
-        stack<int> stk;
-        while(head)   
-        {   
-            stk.push(head ->val);
-            head = head ->next;
-        }
-        while(!stk.empty())
+    ListNode *detectCycle(ListNode *head) {
+        if(!head || !head ->next)   return NULL;
+        ListNode *fast = head;
+        ListNode *slow = head;
+        while(fast != nullptr)
         {
-            vec.push_back(stk.top());
-            stk.pop();
+            if(!fast ->next)   return NULL;
+            fast = fast ->next ->next;
+            slow = slow ->next;
+            if(fast == slow)                //定义从head到交叉节点为距离a，从交叉节点到相遇为b,
+            {                               //环中另一部分为c，则2*(a+b)=a+b+n(b+c),a=c+(n-1)(b+c)
+                ListNode *p = head;         //所以定义一个从head开始的节点与slow同时出发，两者一定在交叉节点相遇
+                while(p != slow)            //因为a等于c加上n-1个环
+                {
+                    p = p ->next;
+                    slow = slow ->next;
+                }
+                return p;
+            }
         }
-        return vec;
+        return NULL;
     }
-}; 
+};
+
 ListNode * CreateListNode(vector<int> a, int n)
 {
     /*ListNode *p = head;
@@ -75,9 +83,11 @@ int main()
     int n1 = nums1.size();
     ListNode *head = CreateListNode(nums1, n1);
     PrintLinkList(head);
-    vector<int> vec1 = s.reversePrint(head);
-    for(int i = 0; i < vec1.size(); i++)
-        cout << vec1[i] << " ";
+    ListNode * p = s.detectCycle(head);
+    if (p)
+        cout << "链表中存在环，环的入口节点值为：" << p->val << endl;
+    else
+        cout << "链表中不存在环。" << endl;
     system("pause");
     return 0;  
 }
