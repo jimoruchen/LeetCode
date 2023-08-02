@@ -1,4 +1,4 @@
-# LeetCode完整代码
+# LeetCode完整代码及解析
 ## leetcode 142 环形链表 II
 1.用unordered_set存储每一个节点，如果节点不在set中则insert，在就返回该节点。
 
