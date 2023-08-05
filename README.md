@@ -1,11 +1,11 @@
 # LeetCode完整代码及解析
+## leetcode 138 复制带随机指针的链表
+初始化hash表，遍历原链表，添加键值对(原节点，现节点),然后构建新节点的 next 和 random 引用指向。 map[cur] ->next = map[cur ->next]，map[cur] ->random = map[cur ->random]，最后返回map[head]。
+
 ## leetcode 142 环形链表 II
 1.用unordered_set存储每一个节点，如果节点不在set中则insert，在就返回该节点。
 
 2.用快慢指针定义从head到交叉节点为距离a，从交叉节点到相遇为b,环中另一部分为c，则2*(a+b)=a+b+n(b+c),a=c+(n-1)(b+c)，所以定义一个从head开始的节点与slow同时出发，两者一定在交叉节点相遇，因为a等于c加上n-1个环，由此该节点即为交叉节点。
-
-## leetcode 138 复制带随机指针的链表
-初始化hash表，遍历原链表，添加键值对(原节点，现节点),然后构建新节点的 next 和 random 引用指向。 map[cur] ->next = map[cur ->next]，map[cur] ->random = map[cur ->random]，最后返回map[head]。
 
 ## leetcode 206 反转链表
 1.首先如果链表头结点或下一节点是空则直接返回头结点。然后定义两个节点，prev指向空，while循环head，用节点p指向head，head指向head ->next,然后p节点指向prev,然后prev节点变为p节点。
