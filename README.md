@@ -12,6 +12,9 @@
 
 2.首先如果链表头结点或下一节点是空则直接返回头结点。然后定义两个节点，prev指向空，while循环head，用节点p指向head ->next，head指向prev,然后prev节点变为head节点,head节点变为p节点。
 
+## leetcode 1748 唯一元素的和
+使用循环遍历数组for(auto num : nums) ++map[num]，将数组中每个值得出现次数装入hash表中，使用for(auto &[key, value] : map)遍历hash表如果出现次数也即是value为1，则将对应的key加入最后的输出结果中。
+
 ## 剑指 Offer 09 用两个栈实现队列
 首先定义两个栈stk1,stk2,用stk1实现appendTail队尾插入操作，在deleteHead函数中实现判断stk1是否为空，不为空则将stk1的所有元素push到stk2中，然后将stk2的第一个元素出栈实现队列删除首元素的功能，然后将stk2的所有元素在push到stk1中。
 
@@ -24,3 +27,6 @@ pop函数：判断stk1.top()和stk2.top()是否相等，相等则一起pop，否
 top函数：直接返回stk1.top()。
 
 min函数：直接返回stk2.top()。
+
+## 剑指 Offer 58 左旋转字符串
+使用reverse先旋转前n个，再旋转后面的，最后旋转所有元素。
